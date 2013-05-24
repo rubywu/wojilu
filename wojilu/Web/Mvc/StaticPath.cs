@@ -125,8 +125,15 @@ namespace wojilu.Web.Mvc {
         }
 
         private static String getDomainPath( String sdomain ) {
-            String hostNoWWW = strUtil.TrimStart( SystemInfo.Host, "www." );
-            return sys.Url.SchemeStr + sdomain + "." + hostNoWWW;
+            if (sdomain.StartsWith("http://"))
+            {
+                return sdomain;
+            }
+            else
+            {
+                String hostNoWWW = strUtil.TrimStart(SystemInfo.Host, "www.");
+                return sys.Url.SchemeStr + sdomain + "." + hostNoWWW;
+            }
         }
 
 
